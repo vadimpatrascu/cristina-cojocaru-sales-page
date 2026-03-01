@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 /* ──────────────────────────── fade-in observer ──────────────────────────── */
 function useFadeIn() {
@@ -139,189 +139,15 @@ const testimonials = [
 /* ──────────────────────────── FORM ──────────────────────────── */
 
 function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
-
-  if (submitted) {
-    return (
-      <div className="text-center py-16">
-        <div className="text-5xl mb-6">&#10003;</div>
-        <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-[#d4af37] mb-4">
-          Formularul a fost trimis cu succes!
-        </h3>
-        <p className="text-white/70">
-          Vei primi un mesaj cu următorii pași în curând.
-        </p>
-      </div>
-    );
-  }
-
-  // TODO: replace FORM_ID
   return (
-    <form
-      action="https://formspree.io/f/FORM_ID"
-      method="POST"
-      onSubmit={(e) => {
-        e.preventDefault();
-        const form = e.currentTarget;
-        fetch(form.action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: { Accept: "application/json" },
-        }).then((res) => {
-          if (res.ok) setSubmitted(true);
-        });
-      }}
-      className="space-y-6 max-w-2xl mx-auto"
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSfDGZFWBogq-bPRhVjM2eXJBH7wZvxJjGTzr_IG4j0m3-2oQA/viewform?embedded=true"
+      className="w-full border-0"
+      style={{ height: "1200px" }}
+      title="Formular de selecție"
     >
-      <input type="hidden" name="_subject" value="Nou formular — program bani" />
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-sm text-white/60 mb-1.5">Nume complet *</label>
-          <input
-            name="nume"
-            required
-            className="w-full bg-[#111833] border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:border-[#d4af37] focus:outline-none transition"
-            placeholder="Numele tău"
-          />
-        </div>
-        <div>
-          <label className="block text-sm text-white/60 mb-1.5">Email *</label>
-          <input
-            name="email"
-            type="email"
-            required
-            className="w-full bg-[#111833] border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:border-[#d4af37] focus:outline-none transition"
-            placeholder="email@exemplu.ro"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-sm text-white/60 mb-1.5">
-          Număr de telefon (WhatsApp) *
-        </label>
-        <input
-          name="telefon"
-          type="tel"
-          required
-          className="w-full bg-[#111833] border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:border-[#d4af37] focus:outline-none transition"
-          placeholder="+40 7XX XXX XXX"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm text-white/60 mb-1.5">
-          Cum ai descrie, pe scurt, situația ta financiară în acest moment? *
-        </label>
-        <textarea
-          name="situatie_financiara"
-          required
-          rows={3}
-          className="w-full bg-[#111833] border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:border-[#d4af37] focus:outline-none transition resize-none"
-          placeholder="ex.: am datorii active / trăiesc de la o lună la alta / am venit, dar nu reușesc să pun nimic deoparte"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm text-white/60 mb-1.5">
-          Ce te apasă cel mai mult legat de bani acum? *
-        </label>
-        <textarea
-          name="ce_te_apasa"
-          required
-          rows={3}
-          className="w-full bg-[#111833] border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:border-[#d4af37] focus:outline-none transition resize-none"
-          placeholder="ex.: ratele lunare / lipsa siguranței / frica de viitor / presiunea constantă"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm text-white/60 mb-1.5">
-          Ce te face să simți că acum este momentul potrivit? *
-        </label>
-        <textarea
-          name="de_ce_acum"
-          required
-          rows={3}
-          className="w-full bg-[#111833] border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:border-[#d4af37] focus:outline-none transition resize-none"
-          placeholder="ex.: nu mai vreau să continui așa / presiunea a crescut / vreau o schimbare reală"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm text-white/60 mb-1.5">
-          Crezi că emoțiile tale au un impact real asupra datoriilor? *
-        </label>
-        <select
-          name="emotii_impact"
-          required
-          className="w-full bg-[#111833] border border-white/10 rounded-lg px-4 py-3 text-white focus:border-[#d4af37] focus:outline-none transition"
-        >
-          <option value="">Alege un răspuns</option>
-          <option value="da">Da, simt că mă blochează</option>
-          <option value="nu_stiu">Nu m-am gândit până acum</option>
-          <option value="react_emotional">
-            Simt că reacționez emoțional când vine vorba de bani
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <label className="block text-sm text-white/60 mb-1.5">
-          Ești dispus(ă) să lucrezi zilnic 15–30 minute, timp de 6 săptămâni? *
-        </label>
-        <select
-          name="disponibilitate"
-          required
-          className="w-full bg-[#111833] border border-white/10 rounded-lg px-4 py-3 text-white focus:border-[#d4af37] focus:outline-none transition"
-        >
-          <option value="">Alege un răspuns</option>
-          <option value="da">Da</option>
-          <option value="nu_sigur">Nu sunt sigur(ă)</option>
-        </select>
-      </div>
-
-      <div>
-        <label className="block text-sm text-white/60 mb-1.5">
-          Ce aștepți de la acest program? *
-        </label>
-        <textarea
-          name="asteptari"
-          required
-          rows={3}
-          className="w-full bg-[#111833] border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:border-[#d4af37] focus:outline-none transition resize-none"
-          placeholder="ex.: să ies din blocaj / să schimb relația cu banii / să am claritate financiară"
-        />
-      </div>
-
-      <div className="flex items-start gap-3 pt-2">
-        <input
-          type="checkbox"
-          name="gdpr"
-          required
-          className="mt-1 accent-[#d4af37]"
-        />
-        <span className="text-sm text-white/50">
-          Sunt de acord cu prelucrarea datelor mele cu caracter personal conform
-          GDPR (Regulamentul UE 2016/679), exclusiv pentru procesul de selecție
-          și comunicări legate de program.
-        </span>
-      </div>
-
-      <button
-        type="submit"
-        className="cta-button w-full text-[#0a0f1e] font-bold py-4 rounded-lg text-lg tracking-wide"
-      >
-        TRIMITE FORMULARUL
-      </button>
-
-      <p className="text-center text-xs text-white/40">
-        Trimiterea formularului nu garantează automat un loc în program.
-        <br />
-        Selecția se face pentru a păstra un cadru de lucru sigur și eficient.
-      </p>
-    </form>
+      Se încarcă…
+    </iframe>
   );
 }
 
@@ -390,15 +216,15 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="mt-16">
-            <Image
-              src="/images/program-unic.png"
-              alt="Un program unic în România"
-              width={400}
-              height={120}
-              className="mx-auto opacity-80"
-              priority
-            />
+          <div className="mt-16 flex justify-center">
+            <div className="inline-flex flex-col items-center gap-2 border border-[#d4af37]/40 rounded-xl px-8 py-4 opacity-80">
+              <span className="font-[family-name:var(--font-playfair)] text-[#d4af37] text-xl tracking-wide">
+                Un program unic &icirc;n Rom&acirc;nia
+              </span>
+              <span className="text-white/50 text-sm tracking-[0.15em] uppercase">
+                numerologie &amp; instrumente de coaching
+              </span>
+            </div>
           </div>
         </div>
       </header>
