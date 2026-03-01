@@ -197,8 +197,7 @@ export default function Home() {
           </p>
 
           <p className="text-white/50 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Primul program care combin&#259; numerologia cu instrumente din coaching
-            pentru a transforma rela&#539;ia ta cu banii din interior spre exterior.
+            Primul program din Rom&acirc;nia care utilizeaz&#259; instrumente de coaching &amp; numerologie.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -222,7 +221,7 @@ export default function Home() {
                 Un program unic &icirc;n Rom&acirc;nia
               </span>
               <span className="text-white/50 text-sm tracking-[0.15em] uppercase">
-                numerologie &amp; instrumente de coaching
+                instrumente de coaching &amp; numerologie
               </span>
             </div>
           </div>
